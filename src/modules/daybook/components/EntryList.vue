@@ -1,20 +1,32 @@
 <template>
   <div class="entry-list-container">
     <div class="px-2 pt-2">
-        <input type="text" 
+        <input v-model="term" type="text" 
                class="form-control"
                placeholder="Buscar entrada">
     </div>
     <div class=" entry-scrollarea">
-        <Entry v-for="item in 10" :key="item"></Entry>
+        <Entry v-for="entrys in entriesByTerm" :key="entrys.id" :entry="entrys"></Entry>
     </div>
   </div>
 </template>
 
 <script>
 import Entry from './Entry.vue';
+import {mapGetters} from 'vuex'
 export default {
-    components: { Entry }
+    components: { Entry },
+    data(){
+        return {
+            term: ''
+        }
+    },
+    computed: {
+        ...mapGetters('journal', ['getEntriesByTerm']),
+        entriesByTerm(){
+            return this.getEntriesByTerm(this.term)
+        }
+    }
 }
 </script>
 
