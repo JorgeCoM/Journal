@@ -13,8 +13,6 @@ try {
     const url = `https://api.cloudinary.com/v1_1/day-book/image/upload`
     const {data} = await axios.post(url, formData)
 
-    console.log(data)
-
     return data.secure_url
 
     
