@@ -147,6 +147,8 @@ export default {
     onSelectedImage(e) {
       const file = e.target.files[0];
       if (!file) {
+        this.localImage = null
+        this.file = null
         return;
       }
 
